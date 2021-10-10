@@ -20,7 +20,7 @@ function App() {
     status: false,
   });
   useEffect(() => {
-    Axios.get("http://localhost:3001/auth/auth", {
+    Axios.get("https://fullstackpedro-api.herokuapp.com/auth/auth", {
       headers: {
         accessToken: localStorage.getItem("accessToken"),
       },

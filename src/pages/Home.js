@@ -14,7 +14,7 @@ const Home = (props) => {
     if (!localStorage.getItem("accessToken")) {
       history.push("/login");
     } else {
-      Axios.get("http://localhost:3001/posts", {
+      Axios.get("https://fullstackpedro-api.herokuapp.com/posts", {
         headers: { accessToken: localStorage.getItem("accessToken") },
       }).then((res) => {
         // console.log(res);
@@ -32,7 +32,7 @@ const Home = (props) => {
 
   const likeAPost = (postId) => {
     Axios.post(
-      "http://localhost:3001/like",
+      "https://fullstackpedro-api.herokuapp.com/like",
       { PostId: postId },
       { headers: { accessToken: localStorage.getItem("accessToken") } }
     ).then((response) => {

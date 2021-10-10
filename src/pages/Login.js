@@ -12,20 +12,22 @@ function Login() {
 
   const login = () => {
     const data = { username: username, password: password };
-    axios.post("http://localhost:3001/auth/login", data).then((response) => {
-      if (response.data.error) {
-        return alert(response.data.error);
-      }
+    axios
+      .post("https://fullstackpedro-api.herokuapp.com/auth/login", data)
+      .then((response) => {
+        if (response.data.error) {
+          return alert(response.data.error);
+        }
 
-      localStorage.setItem("accessToken", response.data.token);
-      setAuthState({
-        username: response.data.username,
-        id: response.data.id,
-        status: true,
+        localStorage.setItem("accessToken", response.data.token);
+        setAuthState({
+          username: response.data.username,
+          id: response.data.id,
+          status: true,
+        });
+        history.push("/");
+        return;
       });
-      history.push("/");
-      return;
-    });
   };
   return (
     <div className="loginContainer">

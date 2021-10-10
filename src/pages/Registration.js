@@ -15,9 +15,11 @@ function Registration() {
   });
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3001/auth", data).then(() => {
-      console.log(data);
-    });
+    axios
+      .post("https://fullstackpedro-api.herokuapp.com/auth", data)
+      .then(() => {
+        console.log(data);
+      });
   };
 
   return (

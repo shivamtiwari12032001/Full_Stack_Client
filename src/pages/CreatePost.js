@@ -31,7 +31,7 @@ function CreatePost(props) {
   });
 
   const onSubmit = (data) => {
-    Axios.post("http://localhost:3001/posts", data, {
+    Axios.post("https://fullstackpedro-api.herokuapp.com/posts", data, {
       headers: {
         accessToken: localStorage.getItem("accessToken"),
       },

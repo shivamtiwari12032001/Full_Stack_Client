@@ -13,19 +13,23 @@ function Post(props) {
   const { authState } = useContext(AuthContext);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/posts/byId/${id}`).then((res) => {
-      console.log(res.data);
-      setPostObject(res.data);
-    });
+    Axios.get(`https://fullstackpedro-api.herokuapp.com/posts/byId/${id}`).then(
+      (res) => {
+        console.log(res.data);
+        setPostObject(res.data);
+      }
+    );
 
-    Axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
-      setComments(response.data);
-    });
+    Axios.get(`https://fullstackpedro-api.herokuapp.com/comments/${id}`).then(
+      (response) => {
+        setComments(response.data);
+      }
+    );
   }, []);
 
   const addComment = () => {
     Axios.post(
-      "http://localhost:3001/comments",
+      "https://fullstackpedro-api.herokuapp.com/comments",
       {
         commentBody: newComment,
         PostId: id,
@@ -50,7 +54,7 @@ function Post(props) {
   };
 
   const deleteComment = (id) => {
-    Axios.delete(`http://localhost:3001/comments/${id}`, {
+    Axios.delete(`https://fullstackpedro-api.herokuapp.com/comments/${id}`, {
       headers: {
         accessToken: localStorage.getItem("accessToken"),
       },
@@ -64,7 +68,7 @@ function Post(props) {
   };
 
   const deletePost = (id) => {
-    Axios.delete(`http://localhost:3001/posts/${id}`, {
+    Axios.delete(`https://fullstackpedro-api.herokuapp.com/posts/${id}`, {
       headers: { accessToken: localStorage.getItem("accessToken") },
     }).then(() => {
       history.push("/");
@@ -75,7 +79,7 @@ function Post(props) {
     if (option === "title") {
       let newTitle = prompt("Enter New Title");
       Axios.put(
-        "http://localhost:3001/posts/title",
+        "https://fullstackpedro-api.herokuapp.com/posts/title",
         { newTitle: newTitle, id: id },
         {
           headers: { accessToken: localStorage.getItem("accessToken") },
@@ -85,7 +89,7 @@ function Post(props) {
     } else {
       let newPostText = prompt("Enter New Post Text");
       Axios.put(
-        "http://localhost:3001/posts/postText",
+        "https://fullstackpedro-api.herokuapp.com/posts/postText",
         { newText: newPostText, id: id },
         {
           headers: { accessToken: localStorage.getItem("accessToken") },
